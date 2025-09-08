@@ -1,29 +1,31 @@
-import { exec } from 'child_process'
+import { exec } from "child_process";
+import { readDirectoryContents } from "./scanner.js";
 
-let repoURL = 'https://github.com/MaxLindquistLnu/Webbteknik-uppgift-3.git'
+let repoURL = "https://github.com/Klas05/WT1_Uppgift2.git";
 
-async function cloneRepo (repoURL) {
-
-exec(`mkdir clonedRepo && cd ./clonedRepo && git clone ${repoURL}`, (error, stdout, stderr) => {
-    if (error) {
-        console.error(`Error cloning repository: ${error.message}`)
-        return
+async function cloneRepo(repoURL) {
+  exec(
+    `mkdir clonedRepo && cd ./clonedRepo && git clone ${repoURL}`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error cloning repository: ${error.message}`);
+        return;
+      }
+      console.log(`Repository cloned successfully!`);
+      readDirectoryContents("./clonedRepo");
+      removeClone();
     }
-    console.log(`Repository cloned successfully!`)
-    removeClone()
-})
+  );
 }
 
-function removeClone () {
-    exec(`rm -r ./clonedRepo`, (error, stdout, stderr) => {
+function removeClone() {
+  exec(`rm -r ./clonedRepo`, (error, stdout, stderr) => {
     if (error) {
-        console.error(`Error removing files: ${error.message}`)
-        return
+      console.error(`Error removing files: ${error.message}`);
+      return;
     }
-    console.log(`Files removed successfully!`)
-})
+    console.log(`Files removed successfully!`);
+  });
 }
 
-await cloneRepo(repoURL)
-
-
+await cloneRepo(repoURL);

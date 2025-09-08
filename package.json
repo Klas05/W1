@@ -11,6 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "git-clone": "^0.2.0"
+    "file-type": "^21.0.0",
+    "git-clone": "^0.2.0",
+    "node-recursive-directory": "^1.2.3"
   }
 }
